@@ -1,0 +1,40 @@
+.header {
+  position: sticky;
+  top: 0;
+  background-color: #282c34;
+  height: 50px;
+  padding: 0 1rem;
+}
+
+.header__button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.6em;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.header__button--active {
+  color: #fff;
+}
+
+.header__button:hover {
+  color: #fff;
+  transform: translate(2px, -2px);
+  transition: all .3s ease-in-out;
+}
+
+.header__logo {
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-right: 3rem;
+  font-size: 2em;
+  color: #fff;
+}
+
+.header__row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
