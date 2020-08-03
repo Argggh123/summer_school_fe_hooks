@@ -1,0 +1,12 @@
+.counter {
+  width: 40%;
+  margin: 3rem auto 0;
+  border: 1px solid #282c34;
+  border-radius: 25px;
+  padding: 1rem;
+}
+
+.counter__buttons--row-around {
+  display: flex;
+  justify-content: space-around;
+}
