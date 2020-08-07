@@ -5,11 +5,11 @@ import './Header.css';
 export class Header extends Component {
 
   getRoutesLinks() {
-    const { routes, handler, location } = this.props;
+    const { routes, location, history } = this.props;
     return routes.map((it, index) => {
       return <button
         key={`header-button-item-${index}`}
-        onClick={() => handler(it.path)}
+        onClick={() => history.push(it.path)}
         className={`header__button ${location.pathname === it.path
           ? 'header__button--active'
           : ''}`}
@@ -24,6 +24,9 @@ export class Header extends Component {
       <div className="header header__row">
         <div className="header__logo">My App</div>
         {this.getRoutesLinks()}
+        <div className="header__exit-button">
+          <button onClick={this.props.logout}>Выйти</button>
+        </div>
       </div>
     );
   }

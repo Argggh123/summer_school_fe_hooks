@@ -22,22 +22,25 @@ class App extends Component {
         },
         {
           path: '/input',
-          name: 'Input'
-        }
+          name: 'Input',
+        },
       ],
-      isAuth: false,
+      isAuth: !!localStorage.getItem('isAuth'),
     };
-  }
-
-  goToTodoList(path) {
-    const { push } = this.props.history;
-    push(path);
   }
 
   setIsAuthHandler() {
     this.setState({
       isAuth: true,
     });
+    localStorage.setItem('isAuth', 'true');
+  }
+
+  logoutHandler() {
+    this.setState({
+      isAuth: false,
+    });
+    localStorage.removeItem('isAuth');
   }
 
   render() {
@@ -53,7 +56,7 @@ class App extends Component {
           )
           : (
             <>
-            <Header routes={this.state.routes} handler={this.goToTodoList.bind(this)} />
+            <Header routes={this.state.routes} logout={this.logoutHandler.bind(this)} />
             <Switch>
             <Route exact path="/" component={CounterPage} />
             <Route path="/todos" component={TodoListPage} />

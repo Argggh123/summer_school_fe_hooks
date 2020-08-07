@@ -43,3 +43,11 @@
   position: relative;
   z-index: 2;
 }
+
+.auth-page__login-form {
+  width: 50%;
+  height: 50%;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 1.3rem;
+}
