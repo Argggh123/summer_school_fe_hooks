@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Switch, withRouter } from "react-router";
+import { Route, Switch } from "react-router";
 import Header from "./components/header/Header";
 import AuthPage from "./pages/AuthPage";
 import CounterPage from "./pages/CounterPage";
@@ -47,4 +47,4 @@ const App = () => {
   );
 };
 
-export default withRouter(App);
+export default App;
