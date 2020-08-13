@@ -1,73 +1,50 @@
-import React, { Component } from 'react';
-import './App.css';
-import { Route, Switch, withRouter } from 'react-router';
-import Header from './components/header/Header';
-import AuthPage from './pages/AuthPage';
-import CounterPage from './pages/CounterPage';
-import TodoListPage from './pages/TodoListPage';
-import InputPage from './pages/InputPage';
+import React from "react";
+import "./App.css";
+import { Route, Switch } from "react-router";
+import Header from "./components/header/Header";
+import AuthPage from "./pages/AuthPage";
+import CounterPage from "./pages/CounterPage";
+import TodoListPage from "./pages/TodoListPage";
+import InputPage from "./pages/InputPage";
+import { useAuth } from "./hooks/useAuth";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      routes: [
-        {
-          path: '/',
-          name: 'Counter',
-        },
-        {
-          path: '/todos',
-          name: 'TodoList',
-        },
-        {
-          path: '/input',
-          name: 'Input',
-        },
-      ],
-      isAuth: !!localStorage.getItem('isAuth'),
-    };
-  }
+const routes = [
+  {
+    path: "/",
+    name: "Counter",
+  },
+  {
+    path: "/todos",
+    name: "TodoList",
+  },
+  {
+    path: "/input",
+    name: "Input",
+  },
+];
 
-  setIsAuthHandler() {
-    this.setState({
-      isAuth: true,
-    });
-    localStorage.setItem('isAuth', 'true');
-  }
-
-  logoutHandler() {
-    this.setState({
-      isAuth: false,
-    });
-    localStorage.removeItem('isAuth');
-  }
-
-  render() {
-    return (
-      <div className="App">
-        {!this.state.isAuth
-          ? (
-            <Switch>
-              <Route>
-                <AuthPage authHandler={this.setIsAuthHandler.bind(this)} />
-              </Route>
-            </Switch>
-          )
-          : (
-            <>
-            <Header routes={this.state.routes} logout={this.logoutHandler.bind(this)} />
-            <Switch>
+const App = () => {
+  const { isAuth, login, logout } = useAuth();
+  return (
+    <div className="App">
+      {!isAuth ? (
+        <Switch>
+          <Route>
+            <AuthPage authHandler={() => login()} />
+          </Route>
+        </Switch>
+      ) : (
+        <>
+          <Header routes={routes} logout={() => logout()} />
+          <Switch>
             <Route exact path="/" component={CounterPage} />
             <Route path="/todos" component={TodoListPage} />
             <Route path="/input" component={InputPage} />
-            </Switch>
-            </>
-          )
-        }
-      </div>
-    );
-  }
-}
+          </Switch>
+        </>
+      )}
+    </div>
+  );
+};
 
-export default withRouter(App);
+export default App;

@@ -1,12 +1,12 @@
-import React from 'react';
-import Input from '../components/input/Input';
+import React, { useCallback } from "react";
+import Input from "../components/input/Input";
 
-import './InputPage.css';
+import "./InputPage.css";
 
 function InputPage() {
   const [value, setValue] = React.useState();
 
-  const onChangeHandler =(e) => setValue(e.target.value);
+  const onChangeHandler = useCallback((e) => setValue(e.target.value), []);
 
   return (
     <div className="input-page input-page__container">
